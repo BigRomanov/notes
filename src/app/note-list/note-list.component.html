@@ -1,0 +1,19 @@
+<div class="content">
+	<div class="note_header">
+		<div class="note_title">
+			My Notes:	
+		</div>
+		<div class="note_actions">
+			<div class="action_button" [routerLink]="['/note/new']">Add note</div>
+		</div>
+	</div>
+
+	<div class="note" *ngFor="let note of notes">
+		<div class="note_tile">
+			{{ note.title }}
+		</div>
+		<div class="note_body">
+			{{ note.body}}
+		</div>
+	</div>
+</div>
