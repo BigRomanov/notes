@@ -21,13 +21,14 @@ export class NoteEditComponent implements OnInit {
 	) {}
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
+
+    this.route.paramMap.pipe(switchMap((params: ParamMap) =>
         this.service.get(params.get('id')))
     ).subscribe(result => {
       console.log("Result", result);
       this.note = result;
     });
+    
   }
 
 }
