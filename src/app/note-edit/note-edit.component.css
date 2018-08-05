@@ -1,0 +1,43 @@
+input, textarea {display: block;}
+
+button { padding: 20px }
+
+.content {
+	width:800px;
+	margin:auto;
+}
+
+.note_title {
+	width:600px;
+	height:;
+}
+
+.form_field {
+	margin-bottom: 20px;
+}
+
+.note_edit_form {
+	width: 600px;
+	margin:auto;
+	padding:20px;
+}
+
+.note_edit_form input {
+	width:590px;
+	height:30px;
+	font-size:24px;
+
+}
+
+.note_body_area {
+	width:600px;
+	min-height:200px;
+}
+
+input.ng-invalid {
+	border-left:5px solid red;
+}
+
+input.ng-valid {
+	border-left:5px solid green;
+}

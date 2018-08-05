@@ -8,9 +8,21 @@
 	float: left;
 	border: 1px solid gray;
 	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
-.note_tile { 
+.note_header {
+	height: 60px;
+	padding:10px;
+}
+
+.note_header_title {
+	float:left;
+	font-size:24px;
+	font-weight: 800;
+}
+
+.note_title { 
 	min-height:20px;
 	padding:5px;
 	border-bottom: 1px solid gray;

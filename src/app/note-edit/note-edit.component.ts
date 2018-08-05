@@ -28,7 +28,14 @@ export class NoteEditComponent implements OnInit {
       console.log("Result", result);
       this.note = result;
     });
-    
+
+  }
+
+  onSubmit() {
+    this.service.save(this.note).subscribe(result => {
+      console.log("note updated")
+      this.router.navigate(['/notes']);
+    });
   }
 
 }

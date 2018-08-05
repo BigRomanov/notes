@@ -1,3 +1,16 @@
-<p>
-  note-edit works!
-</p>
+<div class="content">
+	<form #noteEditForm="ngForm" (ngSubmit)="onSubmit()" class="note_edit_form">
+  	<div class="form_field">
+  		<label for="title">Title:</label>
+  		<input type="text" [(ngModel)]="note.title" name="title" required autofocus>
+  	</div>
+  	<div class="form_field">
+      <label for="body">Description:</label>
+  		<textarea [(ngModel)]="note.body" name="body" class="note_body_area"></textarea>
+  	</div>
+  	<div>
+          <button type="submit" [disabled]="!noteEditForm.form.valid" class="action_button">SUBMIT</button>
+          <button type="cancel" class="action_button" (click)="cancelEdit()">CANCEL</button>
+      </div>
+	</form>
+</div>

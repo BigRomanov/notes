@@ -1,6 +1,6 @@
 <div class="content">
 	<div class="note_header">
-		<div class="note_title">
+		<div class="note_header_title">
 			My Notes:	
 		</div>
 		<div class="note_actions">
@@ -9,11 +9,14 @@
 	</div>
 
 	<div class="note" *ngFor="let note of notes">
-		<div class="note_tile">
+		<div class="note_title">
 			{{ note.title }}
 		</div>
 		<div class="note_body">
 			{{ note.body}}
+		</div>
+		<div>
+			<button class="action_button" [routerLink]="['/note/'+note.id]">EDIT</button>
 		</div>
 	</div>
 </div>
