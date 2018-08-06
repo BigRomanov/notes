@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Note } from '../models/note';
 import { NoteService } from '../services/note.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-note-edit',
@@ -17,7 +18,8 @@ export class NoteEditComponent implements OnInit {
   constructor(
   	private route: ActivatedRoute,
   	private router: Router,
-  	private service: NoteService
+  	private service: NoteService,
+    private alertService: AlertService
 	) {}
 
   ngOnInit() {
@@ -33,9 +35,14 @@ export class NoteEditComponent implements OnInit {
 
   onSubmit() {
     this.service.save(this.note).subscribe(result => {
-      console.log("note updated")
+      console.log("note updated");
+      this.alertService.success("Note saved");
       this.router.navigate(['/notes']);
     });
+  }
+
+  onCancel() {
+    this.router.navigate(['/notes']);
   }
 
 }

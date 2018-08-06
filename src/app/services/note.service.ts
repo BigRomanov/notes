@@ -12,20 +12,28 @@ import { Note } from '../models/note';
 })
 export class NoteService {
 
-  private id_counter = 0;
+  private id_counter = 3;
   private notes : Note[] = [ 
     { 
       id: 1, title: "Buy movie tickets", 
-      body: "Latest MI movie looks promising"
+      body: "Latest MI movie looks promising",
+      important: true
     },
     { 
       id: 2, title: "Buy groceries", 
-      body: "Arborio Rice, Saffron, Vegetable stock, Onions, Butter"},
+      body: "Arborio Rice, Saffron, Vegetable stock, Onions, Butter",
+      important:false
+    },
+      
     { 
-      id: 3, title: "Invite guests for dinner", body: "Vera and Alex"
+      id: 3, title: "Invite guests for dinner", body: "Vera and Alex",
+      important:false
+      
     },
 
   ]
+
+  private lastNote: Note; // to support undo delete functionality
 
   constructor() { }
 
@@ -60,4 +68,36 @@ export class NoteService {
 
     }
   }
+
+  public destroy(note: Note) : Observable<Note[]> {
+    this.lastNote = new Note();
+    // Beware of the deep copy issues
+    Object.assign(this.lastNote, note);
+    this.notes = this.notes.filter(_note => _note.id != note.id);
+    return of(this.notes);
+  }
+
+  public undoDelete() : Observable<Note[]> {
+    this.notes.push(this.lastNote);
+    return of(this.notes);
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

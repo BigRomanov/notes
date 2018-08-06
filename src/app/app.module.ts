@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { MyErrorHandler } from './error_handler'
 
 import { FormsModule} from '@angular/forms';
 
@@ -9,6 +10,8 @@ import { AppComponent } from './app.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { HomeComponent } from './home/home.component';
 import { NoteEditComponent } from './note-edit/note-edit.component';
+import { ShowImportantPipe } from './show-important.pipe';
+import { AlertComponent } from './alert/alert.component';
 
 const appRoutes: Routes = [
   { path: 'notes', component: NoteListComponent },
@@ -24,7 +27,9 @@ const appRoutes: Routes = [
     AppComponent,
     NoteListComponent,
     HomeComponent,
-    NoteEditComponent
+    NoteEditComponent,
+    ShowImportantPipe,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -32,11 +37,21 @@ const appRoutes: Routes = [
     FormsModule, 
 
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      appRoutes
     )
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler, 
+      useClass: MyErrorHandler
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
+
+
+
+

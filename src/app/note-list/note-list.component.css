@@ -32,3 +32,14 @@
 	min-height: 100px;
 	padding: 5px;
 }
+
+.important_note {
+	color:red;
+}
+
+.message {
+	background-color: #9f0c1c;
+	color:white;
+	height:20px;
+	padding:10px;
+}

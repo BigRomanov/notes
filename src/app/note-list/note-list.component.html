@@ -1,15 +1,27 @@
 <div class="content">
+	<div class="message" *ngIf="show_message">
+		<div style="float:left">
+			{{message}}	
+		</div>
+		<div style="float:right">
+			<button (click)="undoDelete()" style="margin-right: 10px">UNDO</button>
+			<button (click)="show_message=false">CLOSE</button>
+			
+		</div>
+	</div>
 	<div class="note_header">
 		<div class="note_header_title">
 			My Notes:	
 		</div>
 		<div class="note_actions">
 			<div class="action_button" [routerLink]="['/note/new']">Add note</div>
+			<div class="action_button" style="width:160px" [routerLink]="['/notes']" [queryParams]="{important:'true'}">Show important</div>
 		</div>
 	</div>
 
-	<div class="note" *ngFor="let note of notes">
-		<div class="note_title">
+	<div class="note" *ngFor="let note of notes | important:show_important">
+		<div [ngClass] ="{'important_note': note.important == true}"
+		                                              class="note_title">
 			{{ note.title }}
 		</div>
 		<div class="note_body">
@@ -17,6 +29,23 @@
 		</div>
 		<div>
 			<button class="action_button" [routerLink]="['/note/'+note.id]">EDIT</button>
+			<button (click)="deleteNote(note)">
+				<img src="/assets/trash-can-outline.png" alt="Delete">
+			</button>
+			<button (click)="note.important = !note.important">
+				<img src="/assets/star-face.png" *ngIf="!note.important">
+				<img src="/assets/star-off.png" *ngIf="note.important">
+			</button>
 		</div>
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
